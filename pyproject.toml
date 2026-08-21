@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "st-functional-canonizer"
-version = "0.2.0"
-description = "Research canonizer and typed-signature induction for IEC 61131-3 Structured Text"
+version = "0.3.0"
+description = "Research canonizer, typed-signature induction, and edit profiling for IEC 61131-3 Structured Text"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{name = "Sergey Evgenievich Shchigal"}]
@@ -18,7 +18,14 @@ Repository = "https://github.com/stchigalsergey/st-functional-canonizer"
 
 [project.scripts]
 st-signature-induction = "st_signature_induction:main"
+st-article4-synthetic = "st_article4_synthetic:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-py-modules = ["st_canonizer", "st_canonizer_v2", "st_signature_induction"]
+py-modules = [
+  "st_article4_synthetic",
+  "st_canonizer",
+  "st_canonizer_v2",
+  "st_defect_taxonomy",
+  "st_signature_induction",
+]

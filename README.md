@@ -6,10 +6,11 @@ comparing ordered sequences with Levenshtein distance.  The implementation
 targets a practical CODESYS-oriented subset.  It is not an IEC 61131-3
 compiler, a defect detector, or a proof of program equivalence.
 
-Version 0.2.0 is a **partial computational artifact** for Article 3.  It
-contains the reusable algorithm and synthetic tests, but no proprietary
-industrial corpus or third-party mutation dataset.  Consequently, the
-repository by itself cannot regenerate the paper's corpus aggregates.
+Version 0.3.0 is a **partial computational artifact** for Articles 3 and 4.
+It contains the reusable algorithms, a deterministic synthetic generator and
+tests, but no proprietary industrial corpus or third-party mutation dataset.
+The repository reproduces the public synthetic component of Article 4; it
+cannot regenerate results that depend on the private corpus or codebook.
 
 ## Repository layout
 
@@ -18,6 +19,10 @@ repository by itself cannot regenerate the paper's corpus aggregates.
 - `src/st_canonizer_v2.py` — improved parsing of consecutive `CASE` labels;
 - `src/st_signature_induction.py` — strict-by-default typed signatures,
   deterministic `K`/`m` induction, ordered sequences, and a generic tail;
+- `src/st_defect_taxonomy.py` — deterministic edit scenarios and contextual
+  functional categories for Article 4;
+- `src/st_article4_synthetic.py` — deterministic, synthetic-only Article 4
+  generator and aggregate report;
 - `legacy/` — the unmodified v1/v2 files used for the historical corpus
   figures;
 - `tests/` — standard-library regression tests;
@@ -29,9 +34,14 @@ repository by itself cannot regenerate the paper's corpus aggregates.
   and parameter sweep;
 - `scripts/check_article3_sweep.py` — comparison of a local sweep with the
   anonymized expected aggregates;
+- `scripts/reproduce_article4.py` — end-to-end verification of the public
+  synthetic Article 4 results;
 - `reproducibility/article3_manifest.json` — input identities and anonymized
   expected aggregate results;
+- `reproducibility/article4_manifest.json` — exact public synthetic results,
+  implementation hashes and claim boundaries;
 - `REPRODUCIBILITY.md` — exact commands and the public/private boundary;
+- `ARTICLE4_REPRODUCIBILITY.md` — Article 4 experiment boundaries and commands;
 - `THIRD_PARTY.md` — provenance and licensing of excluded data;
 - `examples/article3_synthetic/` — a small public corpus for an end-to-end
   smoke test.
@@ -58,6 +68,7 @@ python scripts/induce_signatures.py induce path\to\st-files --k 5 --m 1 --output
 python scripts/induce_signatures.py sweep path\to\st-files --k 5 --m 0 1 2 3 --output sweep.json
 python scripts/induce_signatures.py sweep examples\article3_synthetic --k 2 --m 0 1 --parent-context
 python scripts/verify_stmutants_archive.py path\to\Mutations.zip
+python scripts/reproduce_article4.py
 ```
 
 The public API is strict by default:
@@ -139,6 +150,24 @@ The exact Article 3 commands, expected values, data checksums and limitations
 are recorded in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).  Do not publish a raw
 industrial-corpus report: even without source text it contains filenames and
 complete frequent signatures.
+
+## Article 4 edit profiles
+
+Article 4 keeps three layers separate: numeric Levenshtein distance, the
+selected edit kind (`replace`, `delete`, or `insert`), and the functional
+category assigned to each affected symbol.  Output commands are
+`OUTPUT_UNSPECIFIED` unless the caller explicitly supplies project metadata
+that identifies safe and working command states.  In particular, `FALSE`,
+zero, and `B_SET_OUTPUT_OFF` do not establish safety by themselves.
+
+An optimal Levenshtein path can be ambiguous.  Every result therefore records
+a versioned `tie_break_id`.  The historical rule reproduces the reported
+synthetic edit-kind aggregate; the optional move-aware rule represents a
+simple swap as deletion plus insertion and reports possible moves separately.
+Neither rule proves behavioral equivalence or engineering severity.
+
+See [ARTICLE4_REPRODUCIBILITY.md](ARTICLE4_REPRODUCIBILITY.md) for the exact
+public result, exclusions and regeneration command.
 
 ## Reproducibility note
 

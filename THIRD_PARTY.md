@@ -38,3 +38,14 @@ this release.  The repository's MIT License grants no rights in that corpus.
 Only a corpus-level fingerprint and aggregate measurements are published.
 File contents, file-level manifests, complete induced signatures,
 corpus-specific codebooks and raw reports are excluded.
+
+## Article 4 synthetic programs
+
+The Article 4 generator and its generated HVAC/ST examples are original
+synthetic material in this repository; they do not derive from the excluded
+industrial corpus.  The generated corpus is recreated locally and is not
+checked into the repository.  Its identity is recorded by SHA-256 in
+`reproducibility/article4_manifest.json`.
+
+The six controlled real-project cases and their source snapshot are not
+distributed.  No external dataset is bundled by the Article 4 generator.

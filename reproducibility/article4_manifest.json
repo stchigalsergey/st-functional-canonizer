@@ -1,0 +1,164 @@
+{
+  "schema_version": "st-functional-canonizer/article4-artifact-v1",
+  "artifact_version": "0.3.0",
+  "scope": "public_synthetic_component_only",
+  "implementation_lf_sha256": {
+    "scripts/reproduce_article4.py": "b887c33a03887818e4a997f4b003213513ed3133fdbeff2b692d923745eaa8d5",
+    "src/st_article4_synthetic.py": "0d84b1ea5a33d8499e8b7fc072e43581193be79329176d5f8b6deec1d5c2bd3b",
+    "src/st_canonizer.py": "db8505940c39cbff425524fbe492e475f5d19d26878785bf9974b29bf748c14f",
+    "src/st_canonizer_v2.py": "613763435367dc686bc6e25b061e65d1798db78e4fe8a3f8c2da284d8fb12dca",
+    "src/st_defect_taxonomy.py": "c3cb91150492447f54e080ce9ef9751324257f97ef428283c87c88cb27630fe6"
+  },
+  "expected_public_summary": {
+    "schema_version": "article4-summary/v1",
+    "generator_version": "0.3.0",
+    "scope": "synthetic_only",
+    "protocol": {
+      "record_schema_version": "article4-synthetic/v1",
+      "strict_canonicalization": true,
+      "maximum_defects_per_reference": 4,
+      "configured_mutation_types": 8,
+      "represented_mutation_types": 7,
+      "configured_but_not_represented": [
+        "ЗАМЕНА:ПЕРЕХОД-FSM"
+      ]
+    },
+    "full_corpus": {
+      "reference_records": 282,
+      "category_counts": {
+        "A": 166,
+        "C": 36,
+        "D": 8,
+        "E": 72
+      },
+      "template_count": 16,
+      "unique_block_sequences": 27,
+      "template_sequence_strata": 28,
+      "equivalent_distance_zero": 282,
+      "defect_variants": 990,
+      "defects_with_nonzero_distance": 990,
+      "comparisons": 1272,
+      "rendered_program_texts": 1554,
+      "raw_symbols": 0,
+      "references_by_defect_count": {
+        "1": 12,
+        "2": 28,
+        "3": 46,
+        "4": 196
+      },
+      "taxonomy": {
+        "ВСТАВКА:ВЫХОД-АКТИВНЫЙ": {
+          "defect_variants": 136,
+          "nonzero_distance": 136
+        },
+        "ЗАМЕНА:ВЫХОД-БЕЗОПАСНЫЙ->ВЫХОД-АКТИВНЫЙ": {
+          "defect_variants": 214,
+          "nonzero_distance": 214
+        },
+        "ПЕРЕСТАНОВКА:ЗАЩИТА": {
+          "defect_variants": 60,
+          "nonzero_distance": 60
+        },
+        "УДАЛЕНИЕ:ГАРД/ОГРАНИЧЕНИЕ": {
+          "defect_variants": 46,
+          "nonzero_distance": 46
+        },
+        "УДАЛЕНИЕ:ЗАЩЁЛКА/СБРОС": {
+          "defect_variants": 186,
+          "nonzero_distance": 186
+        },
+        "УДАЛЕНИЕ:ЗАЩИТА/БЛОКИРОВКА": {
+          "defect_variants": 202,
+          "nonzero_distance": 202
+        },
+        "УДАЛЕНИЕ:КОНТРОЛЬ-ОС": {
+          "defect_variants": 146,
+          "nonzero_distance": 146
+        }
+      },
+      "jsonl_sha256": "bf92e6c383969c08f2953fc19d1a4d7143bc7eed439182ecc35a043af4ae3a43"
+    },
+    "working_subset": {
+      "selection_rule": "first-two-per-template-and-canonical-sequence/v1",
+      "reference_records": 56,
+      "defect_variants": 188,
+      "declared_edit_kind_matches": 152,
+      "tie_break_id": "levenshtein-unit/backtrace-diagonal-delete-insert/v1",
+      "taxonomy": {
+        "ВСТАВКА:ВЫХОД-АКТИВНЫЙ": {
+          "defect_variants": 36,
+          "declared_edit_kind_matches": 36
+        },
+        "ЗАМЕНА:ВЫХОД-БЕЗОПАСНЫЙ->ВЫХОД-АКТИВНЫЙ": {
+          "defect_variants": 38,
+          "declared_edit_kind_matches": 38
+        },
+        "ПЕРЕСТАНОВКА:ЗАЩИТА": {
+          "defect_variants": 14,
+          "declared_edit_kind_matches": 0
+        },
+        "УДАЛЕНИЕ:ГАРД/ОГРАНИЧЕНИЕ": {
+          "defect_variants": 12,
+          "declared_edit_kind_matches": 0
+        },
+        "УДАЛЕНИЕ:ЗАЩЁЛКА/СБРОС": {
+          "defect_variants": 32,
+          "declared_edit_kind_matches": 22
+        },
+        "УДАЛЕНИЕ:ЗАЩИТА/БЛОКИРОВКА": {
+          "defect_variants": 34,
+          "declared_edit_kind_matches": 34
+        },
+        "УДАЛЕНИЕ:КОНТРОЛЬ-ОС": {
+          "defect_variants": 22,
+          "declared_edit_kind_matches": 22
+        }
+      },
+      "edit_profile": {
+        "schema_version": "article4-error-profile/v1",
+        "comparisons": 188,
+        "ambiguous_comparisons": 34,
+        "total_operations": 376,
+        "tie_break_ids": [
+          "levenshtein-unit/backtrace-diagonal-delete-insert/v1"
+        ]
+      },
+      "jsonl_sha256": "3ec06d350a724134f83870e685e37d5064f6ae1bda95d91c50a9c61f051db733"
+    },
+    "generation_log_entries": 0
+  },
+  "historical_relationship": {
+    "aggregate_values_preserved": true,
+    "historical_jsonl_bytes_reproduced": false,
+    "reason": "The historical workspace generator used Python built-in hash() for per-record random seeds; v0.3 derives stable flags from SHA-256."
+  },
+  "non_public_results": {
+    "real_project_cases_redistributed": false,
+    "coarse_edit_kind_experiment": {
+      "real_variants": 6,
+      "real_matches": 4,
+      "combined_variants": 194,
+      "combined_matches": 156,
+      "publicly_reproducible_component": "152/188 synthetic only"
+    },
+    "controlled_real_table": {
+      "representation": "private threshold D(5,1)",
+      "same_experiment_as_combined_156_of_194": false,
+      "publicly_reproducible": false
+    }
+  },
+  "claim_boundaries": {
+    "behavioral_equivalence_proved": false,
+    "all_variants_compiled": false,
+    "programs_executed": false,
+    "independent_expert_ground_truth": false,
+    "functional_category_accuracy_computed": false,
+    "severity_model_validated": false,
+    "precision_computed": false,
+    "recall_computed": false,
+    "f1_computed": false,
+    "taxonomy_completeness_validated": false,
+    "real_llm_outputs_evaluated": false,
+    "universal_distance_threshold_established": false
+  }
+}
