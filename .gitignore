@@ -4,7 +4,17 @@ __pycache__/
 .pytest_cache/
 .venv/
 venv/
+build/
+dist/
+*.whl
 reports/
 corpora/
+private/
+corpus_real/
+third_party_data/
+**/Mutations/
+*_induced_alphabet.csv
+*_private.json
+*_probe.json
 *.docx
 *.zip
