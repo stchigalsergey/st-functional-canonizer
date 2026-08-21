@@ -82,5 +82,6 @@ always include:
 
 ## License
 
-No reuse license has been selected yet.  A `LICENSE` file can be added after
-the author chooses the intended reuse terms.
+This project is released under the [MIT License](LICENSE).
+
+Copyright (c) 2026 Sergey Evgenievich Shchigal.
