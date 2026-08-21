@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "st-functional-canonizer"
+version = "0.1.0"
+description = "Research canonizer for a practical subset of IEC 61131-3 Structured Text"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = ["st_canonizer", "st_canonizer_v2"]
