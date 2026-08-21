@@ -23,6 +23,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: python -m pip install .
       - run: python -m unittest discover -s tests -v
+      - run: python scripts/reproduce_article4.py
       - run: python examples/demo.py
       - run: >-
           python scripts/induce_signatures.py sweep

@@ -11,6 +11,9 @@ reports/
 corpora/
 private/
 corpus_real/
+article4_generated/
+article4_synthetic.jsonl
+tasks/real.jsonl
 third_party_data/
 **/Mutations/
 *_induced_alphabet.csv
