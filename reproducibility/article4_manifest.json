@@ -3,8 +3,8 @@
   "artifact_version": "0.3.0",
   "scope": "public_synthetic_component_only",
   "implementation_lf_sha256": {
-    "scripts/reproduce_article4.py": "3d39ca5822a69bff46b1aafafcd8c4c471f75c9761abb8e811ffc1e706781f79",
-    "src/st_article4_synthetic.py": "3efc62beb8a95b9f03005c93232727f5992ff2beaa9e5395aff0f23c741a2e2a",
+    "scripts/reproduce_article4.py": "b887c33a03887818e4a997f4b003213513ed3133fdbeff2b692d923745eaa8d5",
+    "src/st_article4_synthetic.py": "0d84b1ea5a33d8499e8b7fc072e43581193be79329176d5f8b6deec1d5c2bd3b",
     "src/st_canonizer.py": "db8505940c39cbff425524fbe492e475f5d19d26878785bf9974b29bf748c14f",
     "src/st_canonizer_v2.py": "613763435367dc686bc6e25b061e65d1798db78e4fe8a3f8c2da284d8fb12dca",
     "src/st_defect_taxonomy.py": "c3cb91150492447f54e080ce9ef9751324257f97ef428283c87c88cb27630fe6"

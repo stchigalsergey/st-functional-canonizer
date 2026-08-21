@@ -17,6 +17,7 @@ import hashlib
 import itertools
 import json
 from pathlib import Path
+import sys
 
 from st_canonizer_v2 import block_distance_norm, block_levenshtein, canonize
 from st_defect_taxonomy import (
@@ -1249,6 +1250,11 @@ def write_jsonl(path, records):
 
 
 def main(argv=None):
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8")
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--output",
