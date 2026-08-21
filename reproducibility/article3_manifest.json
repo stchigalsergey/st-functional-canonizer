@@ -1,0 +1,124 @@
+{
+  "artifact_release": "0.2.0",
+  "inputs": {
+    "industrial_corpus": {
+      "availability": "not-public",
+      "fingerprint_algorithm": "sha256-path-nul-bytes-nul-v1",
+      "redistributed": false,
+      "sha256": "912f0e345c830e766300a167bdaca38b944f1a6b2361e146e97fd420336dcc25",
+      "top_level_st_files": 189
+    },
+    "stmutants": {
+      "archive_entries": 110,
+      "doi": "10.6084/m9.figshare.31724761.v3",
+      "extracted_manifest_sha256": "b7667e2402ba429a00da4d9d44bd4c10b7f1525b485915e6980c0c5dbd9b987c",
+      "figshare_record": 31724761,
+      "file_id": 62784565,
+      "filename": "Mutations.zip",
+      "license": "CC BY 4.0",
+      "project_sha256": "c0355e78ff4e17b00cb63425b399fd441d0179e24628ad7678789934ad118da7",
+      "publisher_md5": "823f7fe9838a8fc382562d43bc07858a",
+      "redistributed": false,
+      "size_bytes": 213554
+    }
+  },
+  "expected_results": {
+    "controlled_changes_threshold_k5_m1": {
+      "case_count": 6,
+      "mutant_distances": [2, 3, 3, 2, 2, 1],
+      "rename_distance_zero": 6
+    },
+    "historical_v1_m1_k5": {
+      "coverage_percent": 54.521,
+      "covered_occurrences": 4263,
+      "distinct_signatures": 2732,
+      "frequent_templates": 233,
+      "raw_occurrences": 183,
+      "sequence_elements": 7819
+    },
+    "ordered_lexical_rename_m1": {
+      "compiled_or_executed": false,
+      "full_distance_zero": 188,
+      "semantic_equivalence_asserted": false,
+      "text_changed_units": 188,
+      "threshold_k5_distance_zero": 188
+    },
+    "parser_v2_permissive_sweep_k5": [
+      {
+        "coverage_percent": 71.953,
+        "covered_occurrences": 5608,
+        "distinct_signatures": 1585,
+        "encoded_alphabet_size": 186,
+        "frequent_templates": 181,
+        "m": 0,
+        "raw_occurrences": 0,
+        "sequence_elements": 7794,
+        "templates_for_50_percent": 33,
+        "templates_for_80_percent": 355,
+        "templates_for_90_percent": 806,
+        "templates_for_95_percent": 1196
+      },
+      {
+        "coverage_percent": 54.003,
+        "covered_occurrences": 4209,
+        "distinct_signatures": 2754,
+        "encoded_alphabet_size": 243,
+        "frequent_templates": 238,
+        "m": 1,
+        "raw_occurrences": 0,
+        "sequence_elements": 7794,
+        "templates_for_50_percent": 179,
+        "templates_for_80_percent": 1196,
+        "templates_for_90_percent": 1975,
+        "templates_for_95_percent": 2365
+      },
+      {
+        "coverage_percent": 47.164,
+        "covered_occurrences": 3676,
+        "distinct_signatures": 3181,
+        "encoded_alphabet_size": 224,
+        "frequent_templates": 219,
+        "m": 2,
+        "raw_occurrences": 0,
+        "sequence_elements": 7794,
+        "templates_for_50_percent": 275,
+        "templates_for_80_percent": 1623,
+        "templates_for_90_percent": 2402,
+        "templates_for_95_percent": 2792
+      },
+      {
+        "coverage_percent": 44.778,
+        "covered_occurrences": 3490,
+        "distinct_signatures": 3384,
+        "encoded_alphabet_size": 219,
+        "frequent_templates": 214,
+        "m": 3,
+        "raw_occurrences": 0,
+        "sequence_elements": 7794,
+        "templates_for_50_percent": 316,
+        "templates_for_80_percent": 1826,
+        "templates_for_90_percent": 2605,
+        "templates_for_95_percent": 2995
+      }
+    ],
+    "stmutants_all_110": {
+      "full_m1_nonzero": 65,
+      "full_m2_nonzero": 75,
+      "manual_v2_nonzero": 31,
+      "threshold_k5_m1_nonzero": 38,
+      "threshold_k5_m2_nonzero": 36
+    },
+    "strict_lexical_audit": {
+      "affected_units": 58,
+      "character": "^",
+      "unsupported_occurrences": 339
+    }
+  },
+  "historical_reproduction_mode": {
+    "parent_context": true,
+    "parser": "ParserV2",
+    "reject_raw": true,
+    "strict_lexer": false
+  },
+  "schema": "st-functional-canonizer/article3-artifact-v1"
+}
