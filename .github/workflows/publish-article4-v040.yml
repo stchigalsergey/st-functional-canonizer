@@ -1,0 +1,78 @@
+name: Publish verified Article 4 artifact v0.4.0
+on:
+  push:
+    branches: [codex/article4-v0.4.0]
+    paths:
+      - research/article4_20261109/**
+      - .github/workflows/publish-article4-v040.yml
+permissions:
+  contents: read
+concurrency:
+  group: article4-v040-publication
+  cancel-in-progress: false
+jobs:
+  verify-and-release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Verify frozen archive and unpack
+        run: |
+          python - <<'PY'
+          import hashlib,json,zipfile
+          from pathlib import Path
+          path=Path('research/article4_20261109/Article4_reproducibility_2026-11-09.zip')
+          assert hashlib.sha256(path.read_bytes()).hexdigest()=='e8cca0d0f1f7c8ccfd826962f7e949e4bc875f4270c0189ce511cbe2028c39f9'
+          with zipfile.ZipFile(path) as archive:
+              assert archive.testzip() is None
+              for name in archive.namelist():
+                  target=(Path('article4_check')/name).resolve()
+                  assert target.is_relative_to(Path('article4_check').resolve())
+              archive.extractall('article4_check')
+          root=Path('article4_check')
+          for name,digest in json.loads((root/'SHA256SUMS.json').read_text()).items():
+              assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest,name
+          PY
+      - name: Reproduce calculations
+        working-directory: article4_check
+        run: |
+          python -X utf8 experiments/run_sensitivity.py > synthetic.log
+          python -X utf8 experiments/run_external_diagnostics.py > external.log
+          python -X utf8 experiments/run_external_diagnostics.py --normalize-terminal-fence > normalized.log
+          python -X utf8 revision_2_3_1_2026-11-09/computational/run_review_computations.py > new_calculations.log
+          python -X utf8 revision_2_3_1_2026-11-09/representation/build_representation.py > representation.log
+      - name: Check reported invariants
+        working-directory: article4_check
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('revision_2_3_1_2026-11-09')
+          data=json.loads((root/'computational/review_computational_summary.json').read_text())
+          assert (data['synthetic']['n'],data['synthetic']['ambiguous'],data['synthetic']['variable_profile'])==(188,34,6)
+          assert (data['external']['raw']['n'],data['external']['raw']['ambiguous'],data['external']['raw']['variable_profile'])==(11,8,7)
+          assert (data['external']['normalized']['n'],data['external']['normalized']['ambiguous'],data['external']['normalized']['variable_profile'])==(12,9,8)
+          assert data['oracle']['pairs']==675
+          assert data['single_label']['included']==174
+          assert data['single_label']['excluded_move_count']==14
+          assert sum(1 for x in (root/'representation/occurrences.jsonl').open() if x.strip())==6415
+          assert sum(1 for x in (root/'representation/local_operations_with_source.jsonl').open() if x.strip())==591
+          print('PASS: all reported invariants')
+          PY
+      - name: Publish user-authorized release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_COMMIT: ${{ github.sha }}
+        run: |
+          gh release create v0.4.0 \
+            research/article4_20261109/Article4_reproducibility_2026-11-09.zip \
+            research/article4_20261109/SHA256SUMS.json \
+            --target "$RELEASE_COMMIT" \
+            --title 'v0.4.0 — Article 4 all-optimal alignment study' \
+            --notes-file research/article4_20261109/RELEASE_NOTES.md
